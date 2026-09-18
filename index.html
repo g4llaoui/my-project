@@ -124,6 +124,22 @@
         </form>
     </div>
 
+    <div id="dashboard" class="hidden">
+        <header>
+            <h1>Dashboard</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+        </nav>
+        <main>
+            <p>Welcome to the dashboard!</p>
+        </main>
+    </div>
+
     <script>
         document.getElementById('togglePassword').addEventListener('click', function () {
             const passwordInput = document.getElementById('password');
@@ -137,6 +153,13 @@
             } else {
                 this.setAttribute('aria-label', 'Hide password');
             }
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            // Simulate successful authentication
+            document.querySelector('.login-card').classList.add('hidden');
+            document.getElementById('dashboard').classList.remove('hidden');
         });
     </script>
 </body>
