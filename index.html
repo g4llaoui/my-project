@@ -121,6 +121,7 @@
                 </div>
             </div>
             <button type="submit">Login</button>
+            <div id="loginError" class="error hidden"></div>
         </form>
     </div>
 
@@ -136,8 +137,13 @@
             </ul>
         </nav>
         <main>
-            <p>Welcome to the dashboard!</p>
+            <p id="welcomeMessage">Welcome to the dashboard!</p>
         </main>
+        <nav class="bottom-nav">
+            <button class="nav-tab active" data-tab="dashboard">Dashboard</button>
+            <button class="nav-tab" data-tab="tickets">Tickets</button>
+            <button class="nav-tab" data-tab="messages">Messages</button>
+        </nav>
     </div>
 
     <script>
@@ -157,9 +163,41 @@
 
         document.getElementById('loginForm').addEventListener('submit', function (e) {
             e.preventDefault();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const errorEl = document.getElementById('loginError');
+            if (!email || !password) {
+                errorEl.textContent = 'Please enter email and password.';
+                errorEl.classList.remove('hidden');
+                return;
+            }
+            errorEl.classList.add('hidden');
             // Simulate successful authentication
+            const userName = email.split('@')[0];
+            document.getElementById('welcomeMessage').textContent = `Welcome, ${userName}!`;
             document.querySelector('.login-card').classList.add('hidden');
             document.getElementById('dashboard').classList.remove('hidden');
+            // Ensure dashboard tab is active
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.tab === 'dashboard');
+            });
+        });
+
+        // Bottom navigation tab switching
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', function () {
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                const tabName = this.dataset.tab;
+                const welcome = document.getElementById('welcomeMessage');
+                if (tabName === 'dashboard') {
+                    welcome.textContent = `Welcome, ${document.getElementById('email').value.split('@')[0]}!`;
+                } else if (tabName === 'tickets') {
+                    welcome.textContent = 'Tickets view';
+                } else if (tabName === 'messages') {
+                    welcome.textContent = 'Messages view';
+                }
+            });
         });
     </script>
 </body>

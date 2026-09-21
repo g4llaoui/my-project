@@ -1,6 +1,11 @@
 .hidden {
     display: none;
 }
+.error {
+    color: #dc3545;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+}
 
 /* Dashboard layout */
 #dashboard {
@@ -40,4 +45,28 @@
     flex: 1;
     padding: 2rem;
     overflow-y: auto;
+}
+/* Bottom navigation */
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: #007bff;
+    border-top: 1px solid #ddd;
+    padding: 0.5rem 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+.nav-tab {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    color: #666;
+}
+.nav-tab.active {
+    color: #007bff;
+    font-weight: bold;
 }
