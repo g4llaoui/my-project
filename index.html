@@ -98,6 +98,17 @@
             outline: none;
             box-shadow: 0 0 0 2px rgba(0,123,255,0.5);
         }
+        .forgot-password {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            color: #007bff;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -121,6 +132,7 @@
                 </div>
             </div>
             <button type="submit">Login</button>
+            <a href="#reset-password" class="forgot-password">Forgot password?</a>
             <div id="loginError" class="error hidden"></div>
         </form>
     </div>
